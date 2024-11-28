@@ -104,8 +104,10 @@ function ensureAuthenticated(req, res, next) {
 app.post("/upload", ensureAuthenticated, upload.single("video"), async (req, res) => {
     const drive = google.drive({ version: "v3", auth: oauth2Client });
 
+    const body = req.body;
+
     const fileMetadata = {
-      name: req.file.originalname,
+      name: req.body.title,
     };
 
     const bufferStream = new stream.PassThrough();
@@ -122,6 +124,17 @@ app.post("/upload", ensureAuthenticated, upload.single("video"), async (req, res
         media: media,
         fields: "id, webContentLink, webViewLink",
       });
+
+      const r = await prisma.episodes.create({
+        data: {
+          Title: body.title,
+          Description: body.description,
+          CDN_id: response.data.id,
+          collection_id: parseInt(body.collection_id)
+        },
+      });
+      console.log(r);
+      
 
       res.status(200).send(response.data);
     } catch (error) {
@@ -203,6 +216,18 @@ app.post("/create-collection", up.single("file"), async (req, res) => {
 // To get the list of all the collection present in the DB
 app.get("/getAllCollection", async (req, res) => {
   const collection = await prisma.collection.findMany();
+
+  res.json(collection);
+});
+
+// To get all episodes of certain collection
+app.post("/getAllEpisodes", async (req, res) => {
+  const body = req.body;
+  const collection = await prisma.episodes.findMany({
+    where: {
+      collection_id: body.id,
+    },
+  });
 
   res.json(collection);
 });

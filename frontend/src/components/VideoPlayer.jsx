@@ -11,7 +11,7 @@ const VideoPlayer = ({ fileId }) => {
     //   setVideoUrl(url);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "multipart/form-data");
-    myHeaders.append("Authorization", "Bearer ya29.a0AcM612zDM6BryCuGWxCPXzRUJJhYk_fErBEN_AAbVDtrtThUvNUDbVb7iSyDZ85g9gAcaf2l37-yJHfZukk6jWXcZyUtM5m-ydsE3bH1lK1yVUvkv2Lc4QqfAsg3US9RswtURbl2lZc0lqA8gbKSMp0SoDdbCFbFEI1raCgYKASoSARMSFQHGX2MiWYHLUVCdxX4-M0x_yN6cdA0171");
+    myHeaders.append("Authorization", "temp");
 
     // const formdata = new FormData();
     // formdata.append("video", fileInput.files[0], "/path/to/file");

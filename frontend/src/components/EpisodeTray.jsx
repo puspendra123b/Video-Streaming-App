@@ -1,17 +1,20 @@
 
 import { useEffect, useState } from "react";
 
-export function EpisodeTray() {
+export function EpisodeTray({collection_id}) {
   const [collection, setCollection] = useState([]);
   const [deleted, setDeleted] = useState("");
 
   useEffect(() => {
     // setInterval(() => {
-      fetch("http://localhost:3000/getAllCollection", {
-        method: "GET",
+      fetch("http://localhost:3000/getAllEpisodes", {
+        method: "POST",
         headers: {
           "Content-type": "application/json",
         },
+        body: JSON.stringify({
+          id : collection_id
+        })
       }).then(async (res) => {
         const result = await res.json();
         setCollection(result);
@@ -53,8 +56,9 @@ export function EpisodeTray() {
           {collection &&
             collection.map((item) => (
               <tr className="border-b hover:bg-gray-50">
+                <td className="py-1 w-72">1</td>
                 <td className="py-1 w-72">{item.Title}</td>
-                <td className="py-1 w-72">{item.Description}</td>
+                <td className="py-1 w-72 max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">{item.Description}</td>
                 <td className="px-10">{item.No_of_episodes}</td>
                 <td className="pr-4">
                   <button

@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
       <Routes>
           <Route path='/' element={<Landing />} />
-          <Route path='/home' element={<VideoPlayer fileId={"1B_M8tWpSf1wizyYNj-xLZu1YpluBPyT4"} />} />
+          <Route path='/home' element={<VideoPlayer fileId={"1zDjk2zYU_8h9ToOcR5JoYM4JpXrIdsVG"} />} />
           <Route path='/collection' element={<Collection />} />
           <Route path='/add-episodes' element={<Episodes/>} />
       </Routes>
