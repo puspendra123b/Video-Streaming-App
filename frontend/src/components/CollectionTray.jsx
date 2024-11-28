@@ -54,13 +54,19 @@ export function CollectionTray() {
         <tbody>
           {collection &&
             collection.map((item) => (
-              <tr className="border-b hover:bg-gray-50">
+              <tr className="border-b hover:bg-gray-50 max-h-20">
                 <td className="px-4 w-72">{item.Title}</td>
-                <td className="py-1 w-72">{item.Description}</td>
+                <td className="py-1 w-72 max-w-[200px] overflow-hidden text-ellipsis whitespace-nowrap">
+                  {item.Description}
+                </td>
                 <td className="px-10">{item.No_of_episodes}</td>
                 <td className="pr-4">
                   <button
-                    onClick={() => navigate(`/add-episodes:${item.id}`)}
+                    onClick={() =>
+                      navigate(`/add-episodes`, {
+                        state: { id: item.id },
+                      })
+                    }
                     className="text-blue-500 underline"
                   >
                     View

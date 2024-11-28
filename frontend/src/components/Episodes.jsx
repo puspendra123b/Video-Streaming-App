@@ -1,9 +1,13 @@
 import { useState } from "react";
 import UploadVideo from "./UploadVideo";
 import { EpisodeTray } from "./EpisodeTray";
+import { useLocation } from "react-router-dom";
 
 export function Episodes() {
   const [display, setDisplay] = useState(true);
+  const location = useLocation()
+  const { state } = location;
+  
 
   return (
     <div className="flex h-screen justify-around">
@@ -23,11 +27,11 @@ export function Episodes() {
           </button>
         </div>
         <div className={`${display === true ? "hidden" : "block"}`}>
-          <UploadVideo />
+          <UploadVideo collection_id={state.id} />
         </div>
       </div>
       <div className="mt-10">
-        <EpisodeTray />
+        <EpisodeTray collection_id={state.id} />
       </div>
     </div>
   );
