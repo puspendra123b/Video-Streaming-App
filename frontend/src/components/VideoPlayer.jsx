@@ -11,7 +11,7 @@ const VideoPlayer = ({ fileId }) => {
     //   setVideoUrl(url);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "multipart/form-data");
-    myHeaders.append("Authorization", "temp");
+    myHeaders.append("Authorization", "Bearer xyz");
 
     // const formdata = new FormData();
     // formdata.append("video", fileInput.files[0], "/path/to/file");
